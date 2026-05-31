@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Git Check') {
+            steps {
+                bat 'git --version'
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                bat 'docker build -f docker/Dockerfile -t spotify-app:v1 .'
+            }
+        }
+
+        stage('Docker Images') {
+            steps {
+                bat 'docker images'
+            }
+        }
+    }
+}
